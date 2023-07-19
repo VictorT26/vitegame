@@ -1,1 +1,3 @@
 # vitegame
+
+React + Tailwind + ...
