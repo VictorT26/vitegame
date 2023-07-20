@@ -5,9 +5,9 @@ export function getBoard(gameStatus) {
     let firstChar;
     let secondChar;
 
-    if(status == 'empty') {
-        firstChar = '';
-        secondChar = '';
+    if(status == 'empty' || status == 'set') {
+        firstChar = '-';
+        secondChar = '-';
     } else {
         firstChar = 'O'
         secondChar = 'X'
@@ -20,12 +20,10 @@ export function getBoard(gameStatus) {
 
             
         if(current == 0) {
-            console.log("FUCKKKK")
             board.push(<div> {firstChar} </div>);
         } else {
             board.push(<div> {secondChar} </div>);
         }
     }
-    console.log(board);
     return board;
 }

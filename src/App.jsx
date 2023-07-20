@@ -1,19 +1,31 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import { Game } from '../game/game.js'
 import { getBoard } from '../util'
 
-function game() {
-  console.log("yo mama")
-}
-
-const board = getBoard();
-
-let currentGame = new Game();
-
 function App() {
+
+  const [board, setBoard] = useState(getBoard());
+  let currentGame = new Game();
+
+  function game() {
+    currentGame.setStatus = 'set'
+    updateBoard()
+    console.log ('game status = ' + currentGame.status)
+  }
+
+  function updateBoard(){
+    setBoard(getBoard(currentGame.status))
+  }
+
+  function randomBoard() {
+    console.log("current status = " + currentGame.status)
+    if (currentGame.status == 'not-set') {
+      setBoard(getBoard())
+    }
+  }
 
   return (
     <div className='min-h-screen bg-slate-700 flex flex-col gap-5 items-center'>
@@ -24,7 +36,7 @@ function App() {
       <p className='text-white'> Challenge yourself with this totally not random Tic Tac Toe game! </p>
 
       {/* This is where we display game data */}
-      <div className='grid grid-cols-3 gap-8 text-white text-3xl' >
+      <div className='grid grid-cols-3 gap-8 text-white text-3xl'  onClick={ () => {randomBoard()}}>
         { board }
       </div>
 
